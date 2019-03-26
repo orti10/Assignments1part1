@@ -18,26 +18,26 @@ int main() {
   threetree.insert(7);
   threetree.insert(3);
  
-  ariel::Tree mytree;  
-  ariel::Tree mytree2;  
-  mytree.insert(5);
-  mytree.insert(7);
-  mytree.insert(3);
-  mytree.insert(2);
-  mytree.insert(1);
-  mytree.insert(10);
-  mytree.insert(8);
-  mytree.insert(40);
-  mytree.insert(30);
-  mytree.insert(6);
+//   ariel::Tree mytree;  
+//   ariel::Tree mytree2;  
+//   mytree.insert(5);
+//   mytree.insert(7);
+//   mytree.insert(3);
+//   mytree.insert(2);
+//   mytree.insert(1);
+//   mytree.insert(10);
+//   mytree.insert(8);
+//   mytree.insert(40);
+//   mytree.insert(30);
+//   mytree.insert(6);
   
-  mytree2.insert(20);
-  mytree2.insert(10);
-  mytree2.insert(30);
-  mytree2.insert(15);
-  mytree2.insert(5);
-  mytree2.insert(25);
-  mytree2.insert(40);
+//   mytree2.insert(20);
+//   mytree2.insert(10);
+//   mytree2.insert(30);
+//   mytree2.insert(15);
+//   mytree2.insert(5);
+//   mytree2.insert(25);
+//   mytree2.insert(40);
   
   badkan::TestCase tc("Binary tree");
   tc
