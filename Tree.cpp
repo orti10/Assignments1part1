@@ -141,7 +141,7 @@ return 0;
 // 	    }
 // 	}
 //   }
-  return NULL;
+  return 0;
 }
 
 
@@ -165,7 +165,7 @@ int Tree::left(int i) {
 // 	        n=n->getLeft();
 //         }
 //     }
-    return NULL;
+    return 0;
 }
 int Tree::right(int i) {
 // 	if(!contains(i)){
@@ -187,7 +187,7 @@ int Tree::right(int i) {
 // 	        n=n->getLeft();
 //         }
 //     }
-    return NULL;
+    return 0;
 }
 //Inorder print LVR
 void Tree::printInOrder(Node *n) {
