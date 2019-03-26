@@ -22,17 +22,20 @@ namespace ariel
 		int getKey() {
 			return key;
 		}
+		void setKey(int key) {
+			this->key=key;
+		}
 		Node *getRight() {
 			return right;
 		}
 		Node *getLeft() {
 			return left;
 		}
-		Node *setRight(Node *node) {
-			return right = node;
+		void *setRight(Node *node) {
+			this->right = node;
 		}
-		Node *setLeft(Node *node) {
-			return left = node;
+		void *setLeft(Node *node) {
+			this->left = node;
 		}
 
 	};
@@ -46,15 +49,16 @@ namespace ariel
 		Tree();
 		~Tree();
 		void insert(int i);
+	    void deleteTree(Node *n);
 		void remove(int i);
+		Node minNodeValue(Node *n);
 		int size();
-		bool _contains(int i, Node *root);
 		bool contains(int i);
 		int root();
 		int parent(int i);
-		Node* find(int i);
 		int left(int i);
 		int right(int i);
+	    void printInOrder(Node *n);
 		void print();
 	};
 }

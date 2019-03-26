@@ -11,141 +11,191 @@ using namespace ariel;
 using namespace std;
 
 Tree::Tree() {
-	// treeRoot = NULL;
-	// return;
+    treeRoot=new Node() ;
+    sizeOf=0;
 }
 Tree::~Tree() {
+    deleteTree(treeRoot);
+}
+void Tree::deleteTree(Node *n){
+    if(n){
+        deleteTree(n->getLeft());
+        deleteTree(n->getRight());
+        delete n;
+    }
 }
 
 void Tree::insert(int i) {
-	// bool flag = true;
-	// if(find(i)) {
-	//     cout<<"the value is already in"<<endl;
-	//     sizeOf--;
-	// } 
-	// else if(treeRoot==NULL){
-	//     Node *newtreeRoot = new Node (i);
-	//     treeRoot=newtreeRoot;
-	// }
+	if(treeRoot==nullptr){
+	    treeRoot=new Node(i);
+	}
+	else{
+	    Node *n = treeRoot;
+	    while(n!=nullptr){
+	        if(i>n->getKey()){
+	            n=n->getRight();
+	        }
+	    else if(i<n->getKey()){
+	        n=n->getLeft();
+	    }
+	    else{
+	        throw runtime_error("the value already exist");
+	    }
+	  }
+	  n=new Node(i);  
+	}
+	++sizeOf;
+}
 
-	// else{
-	//     Node *current = treeRoot;
-	//     while(flag){
-
-	//     if((i>current->getKey()) && (current->getRight()==NULL)){
-	//         Node *ans = new Node (i);
-	//         current->setRight(ans);
-	//         flag=false;
-	//     }
-	//     if((i>current->getKey()) && (current->getRight()!=NULL))
-	//         current=current->getRight();
-
-	//     if((i<current->getKey()) && (current->getLeft()==NULL)){
-	//         Node *ans = new Node (i);
-	//         current->setLeft(ans);
-	//         flag=false;
-	//     }
-	//     if((i<current->getKey()) && (current->getLeft()!=NULL))
-	//         current=current->getLeft();
-	//     }   
-	// }
-	// sizeOf++;
-	//return 0;
+Node Tree::minNodeValue(Node *n){
+    Node *temp=n;
+    
+    while(temp->getLeft()!=nullptr){
+         minNodeValue(temp->getLeft());
+    }
+    return temp;
 }
 
 void Tree::remove(int i) {
-	//  cout<<"there is no remove"<<endl;
+	if(!contains()){
+	     throw runtime_error("there is no such key");
+	}
+	else{
+	    Node *n=treeRoot;
+	    while(n!=nullptr){
+	        if(i>n->getKey()){
+	            n=n->getRight();
+	        }
+	        else if(i<n->getKey()){
+	            n=n->getLeft();
+	        }
+	        else{
+	            if(n->getLeft()==nullptr){
+	                Node *temp=n->getRight();
+	                
+	            }
+	        }
+	    }
+	        
+	}
+	    
+	}
 }
 
 int Tree::size() {
-	//return sizeOf;
-	return 0;
-}
-
-bool Tree::_contains(int i, Node *treeRoot) {
-	//  if(i==treeRoot->getKey()){
-	//         return true;
-	//     }
-	//     if((i>treeRoot->getKey()) && (treeRoot->getLeft()!=NULL)){
-	//         _contains(i,treeRoot->getLeft());
-	//     }
-	//     if((i<treeRoot->getKey()) && (treeRoot->getRight()!=NULL)){
-	//         _contains(i,treeRoot->getRight());
-	//     }
-	return false;
+	return sizeOf;
 }
 
 bool Tree::contains(int i) {
-	//   if(treeRoot==NULL) return false;
-	//   return _contains(i,treeRoot);
-	return false;
+    if(treeRoot==nullptr){
+        return false;
+    }
+    Node *n=treeRoot;
+    while (n!=nullptr){
+      if(i>n->getKey()){
+	            n=n->getRight();
+	        }
+	    else if(i<n->getKey()){
+	        n=n->getLeft();
+	    }
+	    else{
+	        return true;
+	    }  
+    }
+    return false;
 }
 
 int Tree::root() {
-	// if(treeRoot!=NULL){
-	//     return treeRoot->getKey();
-	// }
-	// cout<<"there is no treeRoot"<<endl;
-	// return -1;
-	return 0;
+    if(treeRoot!=nullptr){
+    return treeRoot->getKey();
+    }
+    throw runtime_error("the tree is empty");
 }
 
 int Tree::parent(int i) {
-	return 0;
+	if((!contains(i)) && (i==treeRoot->getKey())){
+	    throw runtime_error("there no such key");
+	}
+	
+	else{
+	    Node *n=treeRoot;
+	    while(1){
+	    if(i>n->getKey()){
+	        if(n->getRight()->getKey()==i){
+	            return n->getKey();
+	        }
+	        else n=n->getRight();
+	    }
+	    else {
+	        if(n->getLeft()->getKey()==i){
+	            return n->getKey();
+	        }
+	        else n=n->getLeft();
+	    }
+	}
+  }
+  return NULL;
 }
 
-Node *Tree::find(int i) {
-	// Node *currentNode=treeRoot;
 
-	// while(currentNode!=NULL){
-
-	//      if(i<currentNode->getKey()){
-	//         currentNode=currentNode->getLeft();
-	//     }
-	//     else if(i>currentNode->getKey()){
-	//         currentNode=currentNode->getRight();
-	//     }
-	//     else
-	//         return currentNode;
-	// }
-	return NULL;
-}
 int Tree::left(int i) {
-	// // if(!contains(i)){
-	// //     cout<<"there is no left child"<<endl;
-	// //     return -1;
-	// // }
-	// Node *ans=find(i);
-	// if(ans!=NULL){
-	//     if(ans->getLeft()!=NULL) return ans->getLeft()->getKey();
-	//     else {
-	//         cout<<"there is no left child"<<endl;
-	//     }
-	// }
-	// cout<<"there is no such value"<<endl;
-	// return -1;
-	return 0;
+	if(!contains(i)){
+	   throw runtime_error("there no such key");
+	}
+	Node *n=treeRoot;
+	else{
+	    while(n!=nullptr){
+	        if(i==n->getKey()){
+	            if(n->getLeft()==nullptr){
+	                throw runtime_error("there no such key");
+	            }
+	            else return n->getLeft()->getKey();
+	        }
+	        else if(i>n->getKey()){
+	            n=n->getRight();
+	        }
+	        else
+	        n=n->getLeft();
+        }
+    }
+    return NULL;
 }
 int Tree::right(int i) {
-
-	//   Node *ans=find(i);
-	//     if(ans!=NULL){
-	//         if(ans->getRight()!=NULL) return ans->getRight()->getKey();
-	//         else {
-	//             cout<<"there is no right child"<<endl;
-	//         }
-	//     }
-	//     cout<<"there is no such value"<<endl;
-	//     return -1;
-	return 0;
+	if(!contains(i)){
+	   throw runtime_error("there no such key");
+	}
+	Node *n=treeRoot;
+	else{
+	    while(n!=nullptr){
+	        if(i==n->getKey()){
+	            if(n->getRight()==nullptr){
+	                throw runtime_error("there no such key");
+	            }
+	            else return n->getRight()->getKey();
+	        }
+	        else if(i>n->getKey()){
+	            n=n->getRight();
+	        }
+	        else
+	        n=n->getLeft();
+        }
+    }
+    return NULL;
 }
 //Inorder print LVR
-void Tree::print() {
-	// if(node==NULL) return;
+void Tree::printInOrder(Node *n) {
+    if(n==nullptr) return;
 
-	// print(node->getLeft());
-	// cout<<node->getKey()<<" ";
-	// print(node->getRight());
+	printInOrder(n->getLeft());
+	cout<<n->getKey()<<" ";
+	printInOrder(n->getRight());
+
+}
+
+
+void Tree::print() {
+   printInOrder(treeRoot);
+	
 }
 // int main{
 //     cout <<"D" << endl;
