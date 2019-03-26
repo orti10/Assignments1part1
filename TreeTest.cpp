@@ -6,20 +6,20 @@
  */
 
 #include <iostream>
-using std::cout, std::endl;
+using namespace std;
 #include "badkan.hpp"
 #include "Tree.hpp"
 
 int main() {
   ariel::Tree emptytree;
   ariel::Tree threetree;  
- 
+
   threetree.insert(5);
   threetree.insert(7);
   threetree.insert(3);
  
- 
   ariel::Tree mytree;  
+  ariel::Tree mytree2;  
   mytree.insert(5);
   mytree.insert(7);
   mytree.insert(3);
@@ -30,6 +30,14 @@ int main() {
   mytree.insert(40);
   mytree.insert(30);
   mytree.insert(6);
+  
+  mytree2.insert(20);
+  mytree2.insert(10);
+  mytree2.insert(30);
+  mytree2.insert(15);
+  mytree2.insert(5);
+  mytree2.insert(25);
+  mytree2.insert(40);
   
   badkan::TestCase tc("Binary tree");
   tc
@@ -51,7 +59,7 @@ int main() {
   .CHECK_THROWS(threetree.insert(3))
   .CHECK_THROWS(threetree.left(6))
   .CHECK_OK    (threetree.print())
-  .print();
+  //.print();
   
   //mytree test
   .CHECK_EQUAL (mytree.size(),10)
@@ -91,13 +99,17 @@ int main() {
   .CHECK_EQUAL (mytree.contains(5),false)
   .CHECK_EQUAL (mytree.isempty(),true)
   
+  //mytree2 test
   
-  
-
-
-
-
-  
+  .CHECK_EQUAL (mytree2.root(),20)
+  .CHECK_EQUAL (mytree.contains(15),true)
+  .CHECK_EQUAL (mytree.contains(7),false)
+  .CHECK_OK    (mytree.remove(30))
+  .CHECK_EQUAL (mytree.right(20), 25)
+  .CHECK_EQUAL (mytree.right(10), 15)
+  .CHECK_EQUAL (mytree.left(10), 5)
+  .CHECK_THROWS(mytree.left(30));
+  //.print;
   
   cout << "You have " << tc.right() << " right answers and " << tc.wrong() << " wrong answers so your grade is " << tc.grade() << ". Great!" << endl;
 }
