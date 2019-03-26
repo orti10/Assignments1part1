@@ -53,7 +53,7 @@ Node* Tree::minNodeValue(Node *n){
     // while(temp->getLeft()!=nullptr){
     //      minNodeValue(temp->getLeft());
     // }
-    // return temp;
+     return nullptr;
 }
 
 void Tree::remove(int i) {
@@ -83,7 +83,7 @@ void Tree::remove(int i) {
 }
 
 int Tree::size() {
-// 	return sizeOf;
+ 	return 0;
 }
 
 bool Tree::contains(int i) {
